@@ -2,4 +2,37 @@
     ViewBag.Title = "Home";
 
 }
-<h1>Welcome to Home Controller!</h1>
+<div id="main">
+    <h1>Welcome to Home Controller!</h1>
+</div>
+
+<div>Please select dates</div>
+<div class="container">
+    <div class='col-md-5'>
+        <div class="form-group">
+            <div class='input-group date' id='datetimepicker6'>
+                <input type='text' class="form-control" />
+                <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class='col-md-5'>
+        <div class="form-group">
+            <div class='input-group date' id='datetimepicker7'>
+                <input type='text' class="form-control" />
+                <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+        </div>
+    </div>
+    <button class="btn btn-success">
+        Check <i class="glyphicon glyphicon-chevron-right"> </i>
+    </button>
+</div>
+
+
+<span>Graph Mode</span>
+<input type="checkbox" name="graphSwitch" checked>

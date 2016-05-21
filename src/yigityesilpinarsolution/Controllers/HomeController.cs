@@ -6,8 +6,6 @@ namespace yigityesilpinarsolution.Controllers
     // Derived from Mvc Controller Base class
     public class HomeController : Controller
     {
-
-
         [AllowAnonymous]
         public ViewResult Index()
         {

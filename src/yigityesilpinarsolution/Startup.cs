@@ -32,13 +32,13 @@ namespace yigityesilpinarsolution
             )
         {
             app.UseIISPlatformHandler();
-            app.UseFileServer();
 
+            app.UseFileServer();
             app.UseMvc(routeBuilder => routeBuilder.MapRoute("Default", "{controller=Home}/{action=Index}/{id?}"));
 
             app.Run(async (context) =>
             {
-                await context.Response.WriteAsync("Hello World Yigit!");
+                await context.Response.WriteAsync("Path does not exist");
             });
         }
 
