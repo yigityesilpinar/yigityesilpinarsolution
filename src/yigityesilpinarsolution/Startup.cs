@@ -3,8 +3,8 @@ using Microsoft.AspNet.Hosting;
 using Microsoft.AspNet.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.PlatformAbstractions;
 using yigityesilpinarsolution.Models;
+using Microsoft.Extensions.Logging;
 
 namespace yigityesilpinarsolution
 {
@@ -21,11 +21,12 @@ namespace yigityesilpinarsolution
         }
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc();
+
             services.AddEntityFramework()
                 .AddSqlServer()
                 .AddDbContext<StockContext>();
 
+            services.AddMvc();
             services.AddSingleton(provider => Configuration);
 
             // Singleton Life of a web server always the same instance
@@ -39,7 +40,8 @@ namespace yigityesilpinarsolution
 
         public void Configure(
             IApplicationBuilder app,
-            StockContextSeedData seedData
+             ILoggerFactory loggerFactory,
+             StockContextSeedData seedData
             )
         {
             app.UseIISPlatformHandler();
@@ -47,8 +49,11 @@ namespace yigityesilpinarsolution
             app.UseFileServer();
             app.UseMvc(routeBuilder => routeBuilder.MapRoute("Default", "{controller=Home}/{action=Index}/{id?}"));
 
+            app.UseDeveloperExceptionPage();
             app.Run(async (context) =>
             {
+                var logger = loggerFactory.CreateLogger("Catchall Endpoint");
+                logger.LogInformation("No endpoint found for request {path}", context.Request.Path);
                 await context.Response.WriteAsync("Path does not exist");
             });
             seedData.EnsureSeedData();

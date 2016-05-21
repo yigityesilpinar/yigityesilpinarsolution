@@ -15,6 +15,7 @@ namespace yigityesilpinarsolution.Models
         {
             var conString =Startup.Configuration["Data:StockContextConnection"];
             optionsBuilder.UseSqlServer(conString);
+            
             base.OnConfiguring(optionsBuilder);
         }
     }

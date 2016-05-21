@@ -1,13 +1,8 @@
 ﻿@model List<Stock>
 @{
     ViewBag.Title = "Home";
-
 }
 
-@*@foreach (var item in Model)
-{
-   <div>@item.StockDate.ToString()</div>
-}*@
 <div class="row">
     <div class="col-lg-8 col-lg-offset-2">
         <div id="main">
@@ -51,8 +46,8 @@
     </div>
 </div>
 
-<script type="text/javascript">
+@*<script type="text/javascript">
 
     var model = '@Html.Raw(Json.Serialize(Model))';
     console.log(model);
-</script>
+</script>*@

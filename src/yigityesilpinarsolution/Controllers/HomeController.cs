@@ -16,14 +16,17 @@ namespace yigityesilpinarsolution.Controllers
             _repo = repo;
         }
         [AllowAnonymous]
-        public ViewResult Index()
-       {
-            var from = DateTime.Parse("05/01/1998");
-            var to = DateTime.Parse("17/01/1998");
-            var stocks = _repo.getDataForPeriod(from,to);
-            //var model = new HomePageViewModel();
+        public ViewResult Index(StockContext context)
+        {
+            var _repo = new StockRepository(context);
+            //var from = new DateTime(year: 1998, month: 01, day: 10);
+            //var to = new DateTime(year:1998,month:01,day:17);
+            var stocks = _repo.getAllStockData();
+      
             return View(stocks);
         }
-     
+
+
+
     }
 }
