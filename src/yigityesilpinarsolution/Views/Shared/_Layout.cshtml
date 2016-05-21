@@ -4,25 +4,24 @@
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
     <link href="~/scripts/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/scripts/bootswatch/spacelab/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/scripts/font-awesome/css/font-awesome.css" rel="stylesheet" />
     <link href="~/scripts/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css" rel="stylesheet" />
     <link href="~/styles/bootstrap-switch.min.css" rel="stylesheet" />
     <link href="~/styles/appstyle.css" rel="stylesheet" />
 </head>
 <body>
-    <nav class="navbar navbar-default">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="/">Home</a>
-                <a class="navbar-brand" asp-action="Index" asp-controller="Compare">Compare</a>
-
+    <div class="row">
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="/">Home</a>
+                    <a class="navbar-brand" asp-action="Index" asp-controller="Compare">Compare</a>
+                </div>
             </div>
-            <div class="navbar navbar-nav navbar-right">
-             Some Text
-            </div>
-        </div>
-    </nav>
-
-    <div class="container">
+        </nav>
+    </div>
+    <div class="container-fluid">
         @RenderBody()
     </div>
 

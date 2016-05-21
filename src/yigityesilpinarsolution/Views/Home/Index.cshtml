@@ -1,38 +1,58 @@
-﻿@{
+﻿@model List<Stock>
+@{
     ViewBag.Title = "Home";
 
 }
-<div id="main">
-    <h1>Welcome to Home Controller!</h1>
-</div>
 
-<div>Please select dates</div>
-<div class="container">
-    <div class='col-md-5'>
-        <div class="form-group">
-            <div class='input-group date' id='datetimepicker6'>
-                <input type='text' class="form-control" />
-                <span class="input-group-addon">
-                    <span class="glyphicon glyphicon-calendar"></span>
-                </span>
+@*@foreach (var item in Model)
+{
+   <div>@item.StockDate.ToString()</div>
+}*@
+<div class="row">
+    <div class="col-lg-8 col-lg-offset-2">
+        <div id="main">
+            <h1>Welcome to Home Controller!</h1>
+        </div>
+
+        <div>Please select dates</div>
+
+        <div class='col-md-5'>
+            <div class="form-group">
+                <div class='input-group date' id='datetimepicker6'>
+                    <input type='text' class="form-control"  placeholder="FROM DATE MM/DD/YYYY" />
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
             </div>
         </div>
-    </div>
-    <div class='col-md-5'>
-        <div class="form-group">
-            <div class='input-group date' id='datetimepicker7'>
-                <input type='text' class="form-control" />
-                <span class="input-group-addon">
-                    <span class="glyphicon glyphicon-calendar"></span>
-                </span>
+        <div class='col-md-5'>
+            <div class="form-group">
+                <div class='input-group date' id='datetimepicker7'>
+                    <input type='text' class="form-control"  placeholder="TO DATE MM/DD/YYYY" />
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
             </div>
         </div>
+        <div class="col-md-2">
+            <button class="btn btn-success">
+                Check <i class="fa fa-angle-right"> </i>
+            </button>
+        </div>
+
+
+        <div class="col-md-12">
+            <span>Graph Mode</span>
+            <input type="checkbox" name="graphSwitch" checked>
+        </div>
+
     </div>
-    <button class="btn btn-success">
-        Check <i class="glyphicon glyphicon-chevron-right"> </i>
-    </button>
 </div>
 
+<script type="text/javascript">
 
-<span>Graph Mode</span>
-<input type="checkbox" name="graphSwitch" checked>
+    var model = '@Html.Raw(Json.Serialize(Model))';
+    console.log(model);
+</script>
