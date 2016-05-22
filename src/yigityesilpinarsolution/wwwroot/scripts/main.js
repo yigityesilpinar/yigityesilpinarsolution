@@ -1,45 +1,62 @@
-﻿/// <reference path=".js" />
-    require.config({
-        baseUrl: 'scripts/',
-        paths:{
-            jquery: 'jquery/dist/jquery.min',
-            bootstrapSwitch: 'bootstrap-switch.min',
-            bootstrap: 'bootstrap/dist/js/bootstrap.min.js',
-            datetimepicker: 'eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min',
-            moment: 'moment/moment',
-            underscore: 'underscore/underscore-min',
-            app: 'app'
+﻿require.config({
+    baseUrl: 'scripts/',
+    paths: {
+        jquery: 'jquery/dist/jquery.min',
+        bootstrapSwitch: 'bootstrap-switch.min',
+        bootstrap: 'bootstrap/dist/js/bootstrap.min.js',
+        datetimepicker: 'eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min',
+        moment: 'moment/moment',
+        underscore: 'underscore/underscore-min',
+        canvas: 'canvasjs.min',
+        graphWithDate: 'graphWithDate',
+        app: 'app',
+        viewModel: 'viewModel'
+    },
+    shim: {
+        'jquery': {
+            exports: '$'
         },
-        shim: {
-            'jquery': {
-                exports: '$'
-            },
-            'bootstrap': {
-                deps: ['jquery'],
-                exports: '$'
-            },
-            'datetimepicker': {
-                deps: ['jquery'],
-                exports: '$'
-            },
-            'bootstrapSwitch': {
-                deps: ['jquery'],
-                exports: '$'
-            },
-            'moment': {
-                deps: ['jquery'],
-                exports: '$'
-            },
-            'underscore': {
-                exports: '_'
-            },
+        'bootstrap': {
+            deps: ['jquery'],
+            exports: '$'
+        },
+        'datetimepicker': {
+            deps: ['jquery'],
+            exports: '$'
+        },
+        'bootstrapSwitch': {
+            deps: ['jquery'],
+            exports: '$'
+        },
+        'moment': {
+            deps: ['jquery'],
+            exports: '$'
+        },
+        'underscore': {
+            exports: '_'
+        },
+        'canvas': {
+            deps: ['jquery'],
+            exports: '$'
+        },
+        'graphWithDate': {
+            deps: ['jquery'],
+            exports: '$'
+        },
+        'app': {
+            deps: ['jquery', 'bootstrapSwitch', 'datetimepicker'],
+            exports: '$'
+        },
+        'viewModel': {
+            deps: ['jquery', 'canvas'],
+            exports: '$'
         }
-    });
+    }
+});
 
 
-    require(["app"], function (app) {
+require(["app", "viewModel"], function (app, viewModel) {
 
-       
-    })
 
- 
+})
+

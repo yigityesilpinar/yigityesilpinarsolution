@@ -27,6 +27,7 @@ namespace yigityesilpinarsolution
                 .AddDbContext<StockContext>();
 
             services.AddMvc();
+            services.AddLogging();
             services.AddSingleton(provider => Configuration);
 
             // Singleton Life of a web server always the same instance
@@ -45,7 +46,8 @@ namespace yigityesilpinarsolution
             )
         {
             app.UseIISPlatformHandler();
-
+            
+            
             app.UseFileServer();
             app.UseMvc(routeBuilder => routeBuilder.MapRoute("Default", "{controller=Home}/{action=Index}/{id?}"));
 

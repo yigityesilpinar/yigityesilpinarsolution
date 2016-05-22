@@ -1,19 +1,42 @@
-﻿@{
+﻿@model List<Stock>
+@{
     ViewBag.Title = "Compare";
-
 }
+
 <div class="row">
     <div class="col-lg-8 col-lg-offset-2">
         <div id="main">
             <h1>Welcome to Compare Controller!</h1>
         </div>
+        <div class="row">
+            <div class='col-md-5'>
+                <div class="form-group">
+                    <div class='input-group fund'>
+                        <input type='text' class="form-control" id="investmentFund" placeholder="enter Investment Fund" />
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-gbp"></span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class='col-md-5'>
+                <div class="form-group">
+                    <div class='input-group fund'>
+                        <input type='text' class="form-control" id="interestRate" placeholder="enter Interest Rate" />
+                        <span class="input-group-addon" style="font-weight:bold;">
+                           %
+                        </span>
+                    </div>
+                </div>
+            </div>
 
+        </div>
         <div>Please select dates</div>
-    
+
         <div class='col-md-5'>
             <div class="form-group">
                 <div class='input-group date' id='datetimepicker6'>
-                    <input type='text' class="form-control" placeholder="FROM DATE MM/DD/YYYY" />
+                    <input type='text' class="form-control" id="fromDate" placeholder="FROM DATE MM/DD/YYYY" />
                     <span class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
                     </span>
@@ -23,7 +46,7 @@
         <div class='col-md-5'>
             <div class="form-group">
                 <div class='input-group date' id='datetimepicker7'>
-                    <input type='text' class="form-control"  placeholder="TO DATE MM/DD/YYYY" />
+                    <input type='text' class="form-control" id="toDate" placeholder="TO DATE MM/DD/YYYY" />
                     <span class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
                     </span>
@@ -31,16 +54,87 @@
             </div>
         </div>
         <div class="col-md-2">
-            <button class="btn btn-success">
+            <button class="btn btn-success" id="btnCheckStock">
                 Compare <i class="fa fa-angle-right"> </i>
             </button>
         </div>
 
 
         <div class="col-md-12">
-            <span>Graph Mode</span>
-            <input type="checkbox" name="graphSwitch" checked>
+            <span id="labelSwitch">Graph Mode</span>
+            <input type="checkbox" id="graphSwitch" name="graphSwitch" checked>
         </div>
+        <div id="chartContainer" class="col-md-12">
+            <div id="stockChart" style="height: 300px; width: 100%;">
+            </div>
+        </div>
+        <div id="tableContainer" class="col-md-12" style="display:none;">
+            <div id="stockTable" style="height: 300px; width: 100%;">
 
+            </div>
+        </div>
     </div>
 </div>
+
+<script type="text/javascript">
+
+    var App = (function () {
+        function App() {
+            var model = '@Html.Raw(Json.Serialize(Model))';
+            var data = jQuery.parseJSON(model);
+            this.originalDates = getDates(data);
+            this.originalNumbers = getNumbers(data);
+            this.dates = this.originalDates;
+            this.numbers = this.originalNumbers;
+            this.compareMode = true;
+        }
+
+        function getDates(data) {
+
+            var dates = []
+            for (var i = 0; i < data.length; i++) {
+                dates[i] = new Date(data[i].StockDate);
+            }
+            return dates;
+        }
+        function getNumbers(data) {
+            var numbers = []
+            for (var i = 0; i < data.length; i++)
+                numbers[i] = data[i].StockValue;
+            return numbers;
+        }
+
+        App.prototype.restrictDates = function (from, to) {
+            var fromDate = this.parseDate(from);
+            var toDate = this.parseDate(to);
+            var newNumbers = [];
+            var newDates = []
+            var j = 0;
+            var i;
+            for (var i = 0; i < this.originalDates.length; i++) {
+
+                if (fromDate > this.originalDates[i])
+                    continue;
+
+                if (toDate < this.originalDates[i])
+                    break;
+
+                newNumbers[j] = this.originalNumbers[i];
+                newDates[j] = this.originalDates[i];
+                j++;
+            }
+
+            this.dates = newDates;
+            this.numbers = newNumbers;
+
+        };
+        // input mm/dd/yyyy
+        App.prototype.parseDate = function (input) {
+            var parts = input.split(' ')[0].split('/');
+            // new Date(year, month [, day [, hours[, minutes[, seconds[, ms]]]]])
+            //   yyyy,mm,dd
+            return new Date(parts[2], parts[0] - 1, parts[1]);
+        }
+        return App;
+    }());
+</script>

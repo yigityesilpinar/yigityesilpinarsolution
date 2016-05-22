@@ -9,7 +9,7 @@ namespace yigityesilpinarsolution.Models
 
         public StockContext()
         {
-            //Database.EnsureCreated();
+          //  Database.EnsureCreated();
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

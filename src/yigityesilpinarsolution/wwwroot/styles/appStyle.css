@@ -1,5 +1,9 @@
 ﻿body {
 }
 .active {
-color:pink;
+    color: pink;
+}
+.hide{
+
+    display:none;
 }
