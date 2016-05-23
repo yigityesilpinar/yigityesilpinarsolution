@@ -1,7 +1,7 @@
 ﻿define("graphWithDate", function (require, exports, module) {
 
     function createChartTwo(data1,data2) {
-        return new CanvasJS.Chart("stockChart",
+       var chart= new CanvasJS.Chart("stockChart",
 		{
 
 		    title:{
@@ -41,7 +41,7 @@
 			{        
 			    type: "line",
 			    showInLegend: true,
-			    name: "Unique Visits",
+			    name: "Profit by Interest",
 			    color: "#20B2AA",
 			    lineThickness: 2,
 
@@ -49,8 +49,20 @@
 			}
 
 			
-		    ]
-		});   
+		    ]  ,legend:{
+		    cursor:"pointer",
+		    itemclick:function(e){
+		        if (typeof(e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
+		            e.dataSeries.visible = false;
+		        }
+		        else{
+		            e.dataSeries.visible = true;
+		        }
+		        chart.render();
+		    }
+    }
+		});
+       return chart;
     }
 
 
@@ -93,6 +105,7 @@
 
         var chart = createChart(data);
         chart.render();
+        return chart;
     }
     var DrawCompare = function (dates, numbers, fund, rate) {
         fund = parseFloat(fund);
@@ -131,8 +144,8 @@
                 <div>Your money at the end by Interest: ${moneyOnDeposit.toFixed(2)}</div>
             </div>
             `;
-
-        //$(templateResult).insertBefore("#chartContainer");
+     
+        //$('#chartContainer').before(templateResult);
         // model Coming from Razor View
         var data = [];
         var dataSeries = { type: "line" };
@@ -155,6 +168,7 @@
        
         var chart = createChartTwo(dataPoints, dataPoints2);
         chart.render();
+        return chart;
     }
     return {
         Draw: Draw,

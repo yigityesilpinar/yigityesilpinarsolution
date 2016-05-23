@@ -1,16 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
+using yigityesilpinarsolution.Models.Interfaces;
+
 
 namespace yigityesilpinarsolution.Models
 {
-    public class StockRepository
+    public class StockRepositoryDb :IStockRepository
     {
         private StockContext _context;
         private IEnumerable<Stock> _stocks;
 
-        public StockRepository(StockContext context)
+        public StockRepositoryDb(StockContext context)
         {
             _context = context;
             _stocks = _context.Stocks.OrderBy(t=>t.StockDate).ToList();

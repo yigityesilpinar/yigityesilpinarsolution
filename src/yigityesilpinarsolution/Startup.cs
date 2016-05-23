@@ -5,6 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;
 using yigityesilpinarsolution.Models;
 using Microsoft.Extensions.Logging;
+using yigityesilpinarsolution.Models.Interfaces;
 
 namespace yigityesilpinarsolution
 {
@@ -30,19 +31,22 @@ namespace yigityesilpinarsolution
             services.AddLogging();
             services.AddSingleton(provider => Configuration);
 
+            services.AddSingleton<IStockReader, StockReaderCsv>();
+            services.AddTransient<IStockWriter, StockWriterCsvDb>();
+
             // Singleton Life of a web server always the same instance
             // Scoped-> reuse the instance during life of a Request, everybody everytime  
             // Transient -> always getting new instance of this class
-            services.AddTransient<StockContextSeedData>();
+            services.AddSingleton<IDataSeeder,StockSeedDataDb>();
 
-            services.AddSingleton<StockRepository>();
+            services.AddSingleton<IStockRepository,StockRepositoryDb>();
         }
 
 
         public void Configure(
             IApplicationBuilder app,
              ILoggerFactory loggerFactory,
-             StockContextSeedData seedData
+             IDataSeeder dataSeeder
             )
         {
             app.UseIISPlatformHandler();
@@ -58,7 +62,7 @@ namespace yigityesilpinarsolution
                 logger.LogInformation("No endpoint found for request {path}", context.Request.Path);
                 await context.Response.WriteAsync("Path does not exist");
             });
-            seedData.EnsureSeedData();
+            dataSeeder.SeedData();
         }
 
 

@@ -9,10 +9,12 @@ namespace yigityesilpinarsolution.Models
 
         public StockContext()
         {
+          // Comment out for Db Table Creation 
           //  Database.EnsureCreated();
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+            // Configure connection string for Db
             var conString =Startup.Configuration["Data:StockContextConnection"];
             optionsBuilder.UseSqlServer(conString);
             

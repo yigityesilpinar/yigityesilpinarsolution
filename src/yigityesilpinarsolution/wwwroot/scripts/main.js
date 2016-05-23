@@ -10,7 +10,9 @@
         canvas: 'canvasjs.min',
         graphWithDate: 'graphWithDate',
         app: 'app',
-        viewModel: 'viewModel'
+        viewModel: 'viewModel',
+        toastr: 'toastr/toastr.min',
+        validator:'validator'
     },
     shim: {
         'jquery': {
@@ -51,6 +53,16 @@
             deps: ['jquery', 'canvas'],
             exports: '$'
         }
+        ,
+        'toastr': {
+            deps: ['jquery'],
+            exports: '$'
+        },
+        'validator': {
+            deps: ['jquery','toastr'],
+            exports: '$'
+        }
+
     }
 });
 

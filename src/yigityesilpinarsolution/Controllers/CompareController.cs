@@ -1,25 +1,21 @@
 ﻿using Microsoft.AspNet.Authorization;
 using Microsoft.AspNet.Mvc;
-using yigityesilpinarsolution.Models;
+using yigityesilpinarsolution.Models.Interfaces;
 
 namespace yigityesilpinarsolution.Controllers
 {
     public class CompareController:Controller
     {
-        private StockRepository _repo;
+        private IStockRepository _repo;
         // Dependency Injection
-        public CompareController(StockRepository repo)
+        public CompareController(IStockRepository repo)
         {
             _repo = repo;
         }
         [AllowAnonymous]
-        public ViewResult Index(StockContext context)
+        public ViewResult Index()
         {
-            var _repo = new StockRepository(context);
-            //var from = new DateTime(year: 1998, month: 01, day: 10);
-            //var to = new DateTime(year:1998,month:01,day:17);
             var stocks = _repo.getAllStockData();
-
             return View(stocks);
         }
 
