@@ -31,7 +31,7 @@ namespace yigityesilpinarsolution
             services.AddLogging();
             services.AddSingleton(provider => Configuration);
 
-            services.AddSingleton<IStockReader, StockReaderCsv>();
+            services.AddSingleton<IStockReader, StockReaderCsvAsync>();
             services.AddTransient<IStockWriter, StockWriterCsvDb>();
 
             // Singleton Life of a web server always the same instance

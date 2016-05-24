@@ -1,9 +1,10 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace yigityesilpinarsolution.Models.Interfaces
 {
     public interface IStockReader
     {
-        IEnumerable<string[]> read();
+        Task<IEnumerable<string>> read();
     }
 }

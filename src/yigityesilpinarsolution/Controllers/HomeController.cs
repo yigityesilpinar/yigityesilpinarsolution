@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNet.Authorization;
 using Microsoft.AspNet.Mvc;
+using System.Threading.Tasks;
+using yigityesilpinarsolution.Models;
 using yigityesilpinarsolution.Models.Interfaces;
 
 namespace yigityesilpinarsolution.Controllers
@@ -14,8 +16,8 @@ namespace yigityesilpinarsolution.Controllers
             _repo = repo;
         }
         [AllowAnonymous]
-        public ViewResult Index()
-        {    
+        public  ViewResult Index()
+        {
             var stocks = _repo.getAllStockData();
             return View(stocks);
         }

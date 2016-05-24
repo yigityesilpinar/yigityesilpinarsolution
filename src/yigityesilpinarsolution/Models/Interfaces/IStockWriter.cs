@@ -5,6 +5,6 @@ namespace yigityesilpinarsolution.Models.Interfaces
 {
     public interface IStockWriter
     {
-        int write(IEnumerable<String[]> data);
+        int write(IEnumerable<String> data);
     }
 }

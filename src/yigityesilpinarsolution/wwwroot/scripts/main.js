@@ -12,7 +12,8 @@
         app: 'app',
         viewModel: 'viewModel',
         toastr: 'toastr/toastr.min',
-        validator:'validator'
+        validator: 'validator',
+        accounting:'accounting'
     },
     shim: {
         'jquery': {

@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using yigityesilpinarsolution.Models.Interfaces;
 
 namespace yigityesilpinarsolution.Models
@@ -17,14 +19,17 @@ namespace yigityesilpinarsolution.Models
             _context = context;
         }
 
-        public void SeedData()
+        public async void SeedData()
         {
+            IEnumerable<string> lines;
             // IF Db Table is empty Seed Data
             if (!_context.Stocks.Any())
             {
-                var data = _reader.read();
-                var writeResult = _writer.write(data);
+                lines = await _reader.read();           
+                var writeResult = _writer.write(lines);
             }
+
+            
         }
     }
 }
