@@ -11,18 +11,20 @@
         chart = graphWithDate.Draw(app.dates, app.numbers);
     }
 
+    $("#interestRate").focus(function () {
+        validator.ShowInfo('Daily interest rate should be less than 2%, try 0.01-0.04 for reasonable results','Interest Rate Information');
+    });
+
     $('input[name="graphSwitch"]').on('switchChange.bootstrapSwitch', function (event, state) {
-        //var self = $(this);
-        // $("#btnCheckStock").trigger("click");
-        var text = $('#labelSwitch').text();
-        $('#labelSwitch').text(
-            text == "Graph Mode" ? "Table Mode" : "Graph Mode");
+
+        var text = $('#labelSwitch span').text();
+        $('#labelSwitch span').text(
+            text == "TABLE" ? "CHART" : "TABLE");
         $('#tableContainer').toggle(1000, function () {
             $('#chartContainer').toggle(1000, function () {
                 if(chart)
                 chart.render();
             });
-
         });
 
     }); // input switch event
@@ -52,18 +54,14 @@
                     tableWithDate.DrawCompare(app.dates, app.numbers, investmentFund, interestRate);
                 }
                 else {
-                    var message = interestRate ? 'investmentFund is missing' : 'interestRate is missing';                 
-                    validator.ShowWarning(message,'Title');
+                    var message = interestRate ? 'Please provide the Principal Amount' : 'Please provide the Interest Rate';
+                    validator.ShowWarning(message,'Principal Amount and/or Interest Rate is missing!');
                 }
             }
-
         }
         else {
-            var message = fromDate ? 'to is missing' : 'from is missing';
-            validator.ShowWarning(message, 'Title');
-
+            var message = fromDate ? 'Please provide the End-date for the period' : 'Please provide the Start-date for the period';
+            validator.ShowWarning(message, 'Date information is missing!');
         }
     }); // btnCheckStock click event
-
-
 })

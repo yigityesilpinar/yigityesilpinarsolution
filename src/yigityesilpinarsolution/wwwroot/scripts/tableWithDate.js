@@ -23,7 +23,7 @@
                 <thead>
                     <tr>
                         <th>
-                            Date dd/mm/yyyy
+                            Date
                         </th>
                         <th>
                             ${mode}
@@ -64,6 +64,7 @@
         }
         var template = templateStart('Value', '') + templateBody + templateEnd;
         $('#stockTable').html(template);
+      
     }
     var DrawCompare = function (dates, numbers, fund, rate) {
         fund = parseFloat(fund);
@@ -103,19 +104,16 @@
         }
 
         var templateResult = `
-            <div class ="row">
-                <div class="${differenceClass}">Your ${stockDifference > 0 ? 'profit' : 'loss'} by stock ${fMoney(stockDifference.toFixed(2))} &#163; </div>
-                <div class ="text-success">Your profit by Interest: ${fMoney((moneyOnDeposit - fund).toFixed(2))}  &#163</div>
-            </div>
-            <div class="row">
-                <div>Your money at the end by Stocks: ${fMoney(MoneyOnStock.toFixed(2))}</div>
-                <div>Your money at the end by Interest: ${fMoney(moneyOnDeposit.toFixed(2))}</div>
-            </div>
+                <div class ="resultInfo ${differenceClass} col-md-6">Your ${stockDifference > 0 ? 'gain': 'loss'} by stock shares: ${fMoney(stockDifference.toFixed(2))} &#163; </div>
+                <div class ="resultInfo text-success col-md-6">Your profit by Interest: ${fMoney((moneyOnDeposit -fund).toFixed(2))}  &#163</div>
+                <div class ="resultInfo col-md-6">Your money at the end by Stock shares: ${fMoney(MoneyOnStock.toFixed(2))}</div>
+                <div class ="resultInfo col-md-6">Your money at the end by Interest: ${fMoney(moneyOnDeposit.toFixed(2))}</div>
             `;
         $('#resultInfo').html(templateResult);
        
-        var template = templateStart('Profit/Loss Per Share', '<th>Profit by Deposit</th>') + templateBody + templateEnd;
+        var template = templateStart('Stock Gain/Loss', '<th>Interest Gain</th>') + templateBody + templateEnd;
         $('#stockTable').html(template);
+    
     }
     return {
         Draw: Draw,

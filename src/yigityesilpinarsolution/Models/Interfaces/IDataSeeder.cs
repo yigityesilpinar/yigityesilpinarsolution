@@ -1,7 +1,9 @@
-﻿namespace yigityesilpinarsolution.Models.Interfaces
+﻿using System.Threading.Tasks;
+
+namespace yigityesilpinarsolution.Models.Interfaces
 {
     public interface IDataSeeder
     {
-        void SeedData();
+        Task SeedData();
     }
 }

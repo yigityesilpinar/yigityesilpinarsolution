@@ -19,7 +19,7 @@ namespace yigityesilpinarsolution.Models
             _context = context;
         }
 
-        public async void SeedData()
+        public async Task SeedData()
         {
             IEnumerable<string> lines;
             // IF Db Table is empty Seed Data

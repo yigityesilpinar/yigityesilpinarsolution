@@ -22,7 +22,6 @@ namespace yigityesilpinarsolution
         }
         public void ConfigureServices(IServiceCollection services)
         {
-
             services.AddEntityFramework()
                 .AddSqlServer()
                 .AddDbContext<StockContext>();
@@ -33,38 +32,28 @@ namespace yigityesilpinarsolution
 
             services.AddSingleton<IStockReader, StockReaderCsvAsync>();
             services.AddTransient<IStockWriter, StockWriterCsvDb>();
-
-            // Singleton Life of a web server always the same instance
-            // Scoped-> reuse the instance during life of a Request, everybody everytime  
-            // Transient -> always getting new instance of this class
             services.AddSingleton<IDataSeeder,StockSeedDataDb>();
-
             services.AddSingleton<IStockRepository,StockRepositoryDb>();
         }
-
 
         public void Configure(
             IApplicationBuilder app,
              ILoggerFactory loggerFactory,
              IDataSeeder dataSeeder
             )
-        {
-            app.UseIISPlatformHandler();
-            
-            
+        {         
+            app.UseIISPlatformHandler();     
             app.UseFileServer();
-            app.UseMvc(routeBuilder => routeBuilder.MapRoute("Default", "{controller=Home}/{action=Index}/{id?}"));
-
+            app.UseMvc(routeBuilder => routeBuilder.MapRoute("Default", "{controller=Home}/{action=Index}/{id?}"));      
             app.UseDeveloperExceptionPage();
             app.Run(async (context) =>
-            {
+            {        
                 var logger = loggerFactory.CreateLogger("Catchall Endpoint");
                 logger.LogInformation("No endpoint found for request {path}", context.Request.Path);
                 await context.Response.WriteAsync("Path does not exist");
             });
             dataSeeder.SeedData();
         }
-
 
         public static void Main(string[] args) => WebApplication.Run<Startup>(args);
     }

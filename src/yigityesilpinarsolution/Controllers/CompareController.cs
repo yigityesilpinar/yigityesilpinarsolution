@@ -8,6 +8,7 @@ namespace yigityesilpinarsolution.Controllers
     {
         private IStockRepository _repo;
         // Dependency Injection
+
         public CompareController(IStockRepository repo)
         {
             _repo = repo;

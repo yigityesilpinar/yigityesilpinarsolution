@@ -3,56 +3,60 @@
     ViewBag.Title = "Home";
 }
 
-<div class="row">
+<div class="row" id="main-content">
     <div class="col-lg-8 col-lg-offset-2">
-        <div id="main">
-            <h1>Welcome to Home Controller!</h1>
+        <div id="main" class="col-md-12">
+            <h1>Welcome to Home Page!</h1>
+        </div>
+        <div id="description" class="col-md-10 spacingTop">
+            Home page demonstrates the changes of the stock price over time in the form of a Chart and a Table. Use your mouse over
+            the Chart to zoom in. Use the switch to navigate between Chart and Table views.
         </div>
 
-        <div>Please select dates</div>
+        <div class="col-md-12 spacingTop">Please select the dates using the selector(click the icon), or by typing in form MM/DD/YYYY</div>
 
-        <div class='col-md-5'>
+        <div class='col-md-5 spacingTop'>
             <div class="form-group">
                 <div class='input-group date' id='datetimepicker6'>
-                    <input type='text' class="form-control" id="fromDate" placeholder="FROM DATE MM/DD/YYYY" />
+                    <input type='text' class="form-control" id="fromDate" placeholder="FROM" />
                     <span class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
                     </span>
                 </div>
             </div>
         </div>
-        <div class='col-md-5'>
+
+        <div class='col-md-5 spacingTop'>
             <div class="form-group">
                 <div class='input-group date' id='datetimepicker7'>
-                    <input type='text' class="form-control" id="toDate" placeholder="TO DATE MM/DD/YYYY" />
+                    <input type='text' class="form-control" id="toDate" placeholder="TO" />
                     <span class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
                     </span>
                 </div>
             </div>
         </div>
-        <div class="col-md-2">
-            <button class="btn btn-success" id="btnCheckStock">
+
+        <div class="col-md-2 spacingTop">
+            <button class="btn btn-primary" id="btnCheckStock">
                 Check <i class="fa fa-angle-right"> </i>
             </button>
         </div>
 
-
-        <div class="col-md-12">
-            <span id="labelSwitch">Graph Mode</span>
+        <div class="col-md-12 spacingTop">
+            <span id="labelSwitch">Switch to <span class='text-info'>TABLE</span> view: </span>
             <input type="checkbox" id="graphSwitch" name="graphSwitch" checked>
         </div>
-        <div id="chartContainer" class="col-md-12" style="min-width:300px;">
-            <div id="stockChart" style="height: 300px; width: 100%;">
-            </div>
-            @*<canvas id="stockChart" width="150" height="150"></canvas>*@
-        </div>
-        <div id="tableContainer" class="col-md-12" style="display: none;">
-            <div id="stockTable" style="height: 300px; width: 100%;">
 
-            </div>
+        <div id="chartContainer" class="col-md-10 spacingTop">
+            <div id="stockChart" style="height: 300px; width: 100%;"></div>
         </div>
-    </div>
+
+        <div id="tableContainer" class="col-md-12 spacingTop" style="display: none;">
+            <div id="stockTable"></div>
+        </div>
+
+    </div>@*Container grid 2-8-2*@
 </div>
 <script type="text/javascript">
 
@@ -100,7 +104,7 @@
                 newDates[j] = this.originalDates[i];
                 j++;
             }
-        
+
             this.dates = newDates;
             this.numbers = newNumbers;
 

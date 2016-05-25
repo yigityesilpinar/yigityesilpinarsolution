@@ -5,78 +5,85 @@
 
 <div class="row">
     <div class="col-lg-8 col-lg-offset-2">
-        <div id="main">
-            <h1>Welcome to Compare Controller!</h1>
+        <div id="main" class="col-md-12 spacingTop">
+            <h1>Compare Page</h1>
         </div>
-        <div class="row">
-            <div class='col-md-5'>
-                <div class="form-group">
-                    <div class='input-group fund'>
-                        <input type='text' class="form-control" id="investmentFund" placeholder="enter Investment Fund" />
-                        <span class="input-group-addon">
-                            <span class="glyphicon glyphicon-gbp"></span>
-                        </span>
-                    </div>
+
+        <div id="description" class="col-md-10 spacingTop">
+            Compare page offers a comparison between Gain/Loss by Stock Shares and Deposit Interest based on the Principal Amount, Interest Rate and Period provided
+            by user. Comparison is represented as Chart and Table views.  
+        </div>
+
+        <div class='col-md-5 spacingTop'>
+            <div>Principal Amount</div>
+            <div class="form-group">
+                <div class='input-group fund'>
+                    <input type='text' class="form-control" id="investmentFund" placeholder="Principal Amount" />
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-gbp"></span>
+                    </span>
                 </div>
             </div>
-            <div class='col-md-5'>
-                <div class="form-group">
-                    <div class='input-group fund'>
-                        <input type='text' class="form-control" id="interestRate" placeholder="enter Interest Rate" />
-                        <span class="input-group-addon" style="font-weight:bold;">
-                           %
-                        </span>
-                    </div>
+        </div>
+
+        <div class='col-md-5 spacingTop'>
+            <div>Daily Interest Rate (%)</div>
+            <div class="form-group">
+                <div class='input-group fund'>
+                    <input type='text' class="form-control" id="interestRate" placeholder="Interest Rate (%)" />
+                    <span class="input-group-addon" style="font-weight:bold;">
+                        %
+                    </span>
                 </div>
             </div>
-
         </div>
-        <div>Please select dates</div>
 
-        <div class='col-md-5'>
+        <div class="col-md-12 spacingTop">Please select the dates using the selector(click the icon), or by typing in form MM/DD/YYYY</div>
+
+        <div class='col-md-5 spacingTop'>
             <div class="form-group">
                 <div class='input-group date' id='datetimepicker6'>
-                    <input type='text' class="form-control" id="fromDate" placeholder="FROM DATE MM/DD/YYYY" />
+                    <input type='text' class="form-control" id="fromDate" placeholder="FROM" />
                     <span class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
                     </span>
                 </div>
             </div>
         </div>
-        <div class='col-md-5'>
+
+        <div class='col-md-5 spacingTop'>
             <div class="form-group">
                 <div class='input-group date' id='datetimepicker7'>
-                    <input type='text' class="form-control" id="toDate" placeholder="TO DATE MM/DD/YYYY" />
+                    <input type='text' class="form-control" id="toDate" placeholder="TO" />
                     <span class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
                     </span>
                 </div>
             </div>
         </div>
-        <div class="col-md-2">
-            <button class="btn btn-success" id="btnCheckStock">
+
+        <div class="col-md-2 spacingTop">
+            <button class="btn btn-primary" id="btnCheckStock">
                 Compare <i class="fa fa-angle-right"> </i>
             </button>
         </div>
 
-
-        <div class="col-md-12">
-            <span id="labelSwitch">Graph Mode</span>
+        <div class="col-md-12 spacingTop">
+            <span id="labelSwitch">Switch to <span class='text-info'>TABLE</span> view: </span>
             <input type="checkbox" id="graphSwitch" name="graphSwitch" checked>
         </div>
-        <div class="col-md-12" id="resultInfo">
 
-        </div>
-        <div id="chartContainer" class="col-md-12">
-            <div id="stockChart" style="height: 300px; width: 100%;">
-            </div>
-        </div>
-        <div id="tableContainer" class="col-md-12" style="display:none;">
-            <div id="stockTable" style="height: 300px; width: 100%;">
+        <div class="col-md-12 spacingTop" id="resultInfo"></div>
 
-            </div>
+        <div id="chartContainer" class="col-md-10 spacingTop">
+            <div id="stockChart" style="height: 300px; width: 100%;"></div>
         </div>
-    </div>
+
+        <div id="tableContainer" class="col-md-12 spacingTop" style="display:none;">
+            <div id="stockTable"></div>
+        </div>
+
+    </div> @*Container grid 2-8-2*@
 </div>
 
 <script type="text/javascript">

@@ -35,7 +35,7 @@ namespace yigityesilpinarsolution.Models
             IEnumerable<Double> values = dataList.Select(dl => Double.Parse(dl[1], CultureInfo.InvariantCulture));
             var dateValueDictionary = new Dictionary<DateTime, Double>();
             // TO test the algorithm
-            //var extendedDictionary = new Dictionary<DateTime, Double>();
+            var extendedDictionary = new Dictionary<DateTime, Double>();
             int index = 0;
             foreach (var value in values)
             {
@@ -45,13 +45,13 @@ namespace yigityesilpinarsolution.Models
             DateTime tempDate;
             foreach (var keyValue in dateValueDictionary)
             {
-                //extendedDictionary.Add(keyValue.Key, keyValue.Value);
+                extendedDictionary.Add(keyValue.Key, keyValue.Value);
                 _context.Add(new Stock() { StockDate = keyValue.Key, StockValue = keyValue.Value });
                 tempDate = keyValue.Key;
                 while (!dateValueDictionary.ContainsKey(tempDate.AddDays(1)) && tempDate<dateValueDictionary.Keys.Last())
                 {
                     tempDate = tempDate.AddDays(1);
-                  //  extendedDictionary.Add(tempDate, keyValue.Value);
+                    extendedDictionary.Add(tempDate, keyValue.Value);
                     _context.Add(new Stock() { StockDate=tempDate,StockValue= keyValue.Value });
                 }
             }

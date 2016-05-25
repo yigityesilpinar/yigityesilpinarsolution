@@ -1,10 +1,70 @@
 ﻿body {
+    background-image: url('../images/background-pattern.jpg');
+    background-repeat: repeat;
 }
 
-/*td.success{
-
-   background-color: #dff0d8;
+.resultInfo {
+    font-style: italic;
+    margin-top: 2%;
 }
-td.danger{
-  background-color: #f2dede;
-}*/
+
+.spacingTop {
+    margin-top: 1.5em;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    height: 100px;
+    background-image: linear-gradient(#6d94bf, #446e9b 50%, #3e648d);
+}
+
+
+.bootstrap-switch .bootstrap-switch-handle-off.bootstrap-switch-primary, .bootstrap-switch .bootstrap-switch-handle-on.bootstrap-switch-primary {
+    background-image: linear-gradient(#6d94bf, #446e9b 50%, #3e648d);
+}
+
+.navbar-default .navbar-brand {
+    color: white;
+    text-indent: 10%;
+}
+
+.navbar-brand:focus {
+    color: #3399f3;
+    background-color: transparent;
+}
+
+@media screen and (min-width: 568px) {
+    body {
+        font-size: 2em;
+    }
+
+    .navbar-default .navbar-brand {
+        font-size: 1.5em;
+    }
+}
+
+@media screen and (max-width: 568px) {
+    canvas.canvasjs-chart-canvas {
+        height: 150px;
+        width: 100%;
+    }
+
+    .header {
+        height: 50px;
+    }
+
+    h1 {
+        font-size: 1.5em;
+    }
+
+    #description {
+        display: none;
+    }
+}
+
+@media screen and (max-width:992px) {
+    button#btnCheckStock {
+        width: 100%;
+    }
+}

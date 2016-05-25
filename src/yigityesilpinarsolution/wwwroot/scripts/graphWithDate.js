@@ -10,11 +10,10 @@
 		    },
 		    animationEnabled: true,
 		    axisX:{
-
+		        labelAngle: 30,
 		        gridColor: "Silver",
 		        tickColor: "silver",
-		        valueFormatString: "DD/MMM/YYYY"
-
+		        valueFormatString: "DD/MM/YYYY"
 		    },                        
 		    toolTip:{
 		        shared:true
@@ -33,7 +32,7 @@
 			    type: "line",
 			    showInLegend: true,
 			    lineThickness: 2,
-			    name: "Stock Profit/Loss",
+			    name: "Stock Gain/Loss",
 			    markerType: "square",
 			    color: "#F08080",
 			    dataPoints: data1
@@ -41,14 +40,11 @@
 			{        
 			    type: "line",
 			    showInLegend: true,
-			    name: "Profit by Interest",
+			    name: "Interest Gain",
 			    color: "#20B2AA",
 			    lineThickness: 2,
-
 			    dataPoints: data2
-			}
-
-			
+			}		
 		    ]  ,legend:{
 		    cursor:"pointer",
 		    itemclick:function(e){
@@ -70,9 +66,9 @@
         return new CanvasJS.Chart("stockChart", {
             zoomEnabled: true,
             title: {
-                text: "The Whole Chart of the Data"
+                text: "Stock Price over Period"
             },
-            animationEnabled: false,
+            animationEnabled: true,
             axisX: {
                 labelAngle: 30
             },
@@ -81,7 +77,7 @@
                 includeZero: false
             },
 
-            data: data  // random generator below
+            data: data  
 
         }); // CanvasJS.Chart
 
